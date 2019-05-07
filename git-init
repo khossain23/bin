@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Create a new git repository.
+
+# Check if a git repository already exists.
+FILE=${PWD}/.git
+if [ -d "$FILE" ]; then
+	echo "A git repository already exists, quiting operation."
+	exit
+fi
+
+# Create a github repo.
+read -p "Create a new repository on GitHub? Yes/No " -n 1 -r
+echo
+
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+	chrome https://github.com/new
+fi
+
+# Once complete with online setup, proceed with script.
+read -n 1 -s -r -p "Once complete, press any key to continue..."
+echo
+
+git init
+touch README.md
+touch .gitignore
+git add -A
+git commit -am "initial commit"
+git remote add origin https://github.com/twesleyb/${PWD##*/}
+git push -u origin master

@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Check if jupyter-noteook Tmux session exists.
+if tmux ls | grep -q jupyter-notebook; then
+	echo "connecting to existing jupyter server..."
+	# Check which jupyter server exists.
+        jupyter notebook list >> ~/jupyter-server.txt
+	sleep 3
+	chrome $(cut -d' ' -f1 ~/jupyter-server.txt | sed -n '2p')
+	rm ~/jupyter-server.txt
+	exit
+fi
+
+# If server doesn't exist, then launch one in Tmux...
+echo "starting new jupyter server..."
+
+# Start tmux session.
+session="jupyter-notebook"
+
+# Set up tmux
+tmux start-server
+
+# Create new window
+tmux new-session -d -s $session -n jupyter-notebook
+
+# Select pane 1, launch jupyter-notebook.
+tmux selectp -t 1
+tmux send-keys "jupyter-notebook --no-browser &> jupyter-server.txt" C-m
+
+# Wait for file to be made.
+sleep 3
+chrome $(sed -n '10p' ~/jupyter-server.txt)
+
+# Remove temporary file.
+rm ~/jupyter-server.txt
