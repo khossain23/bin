@@ -8,6 +8,8 @@
 # Usage:
 # launch-jupyter
 
+# fixme: May encounter error if tmux session exists, but server has closed.
+
 # First, check if jupyter-noteook Tmux session exists,
 # and launch this notebook.
 if tmux ls | grep -q jupyter-notebook; then
