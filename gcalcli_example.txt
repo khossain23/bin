@@ -1,0 +1,7 @@
+# gcalcli aliased as calendar for convience.
+
+# Add an event.
+gcalcli --calendar twesleyb10@gmail.com quick 'Dinner with Eric 7pm tomorrow'
+
+# check your agenda
+gcalcli agenda
