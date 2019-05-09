@@ -1,0 +1,24 @@
+#!/bin/bash
+echo "Create a google Calendar event"
+
+read -p '-title:' usertitle
+read -p '--where:' userwhere
+read -p '--when (date):' userdate
+read -p '--when (time):' usertime
+#read -p '--who (email):' userwho
+read -p '--duration:' userduration
+read -p '--description:' userdescription
+#read -p '--remind (yes/no):' userremind
+
+#usertitle="foo"
+#userdate="5/8/19"
+#usertime="5 pm"
+#userduration=60
+
+gcalcli --calendar twesleyb10@gmail.com add \
+	--title "'$usertitle'" \
+	--where "'$userwhere'" \
+	--when "'$userdate $usertime'" \
+	--duration $userduration \
+	--description "'$userdescription'" 
+	

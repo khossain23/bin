@@ -2,6 +2,8 @@
 
 # A simple function for lazy git add, commit, and push.
 
+# Fixme: need to insure comments are added correctly.
+
 # Usage:
 # lazygit [MESSAGE]
 # lazygit "My commit message"
