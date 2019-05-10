@@ -1,27 +1,54 @@
 #!/bin/bash
 
 # Create a new git repository.
+# Usage: easyinit my-new-repo
+# Usage: easyinit
 
-# Check if a git repository already exists.
+# If no directory is provided, then ask for one.
+if [ $# -eq 0 ]
+then
+	read -p "Create a new directory? Yes/No: " -n 1 -r
+	echo
+	if [[ $REPLY =~ ^[Yy]$ ]]
+	then
+		read -p "Specify a new directory: "
+		if [[ -d ${PWD}/$REPLY ]]
+		then
+			echo "This directory already exists!"
+			exit
+		else
+			mkdir ${PWD}/$REPLY
+			cd $REPLY
+		fi
+	fi
+fi
+
+# If a directory is provided, try to make it.
+if [[ $# -eq 1 ]] && [[ ! -d ${PWD}/$1 ]]
+then
+	mkdir $1
+	cd $REPLY
+fi
+
+# Insure that a git repository doesn't already exist before proceeding.
 FILE=${PWD}/.git
-if [ -d "$FILE" ]; then
+if [ -d "$FILE" ]
+then
 	echo "A git repository already exists, quiting operation."
 	exit
 fi
 
-# Create a github repo.
-read -p "Create a new repository on GitHub? Yes/No " -n 1 -r
+# Has a repository been created? Prompt the user to create a repo.
+read -p "Create a new repository on GitHub? Yes/No: " -n 1 -r
 echo
-
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 	chrome https://github.com/new
+	read -n 1 -s -r -p "Once complete, press any key to continue... "
+	echo
 fi
 
-# Once complete with online setup, proceed with script.
-read -n 1 -s -r -p "Once complete, press any key to continue..."
-echo
-
+# The nuts and bolts:
 git init
 touch README.md
 touch .gitignore
@@ -29,3 +56,4 @@ git add -A
 git commit -am "initial commit"
 git remote add origin https://github.com/twesleyb/${PWD##*/}
 git push -u origin master
+
