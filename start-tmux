@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#tmux new-session -d -s work -n terminal
+#tmux send-keys -t work:terminal "cd $PWD" C-m 
+#tmux send-keys -t work:terminal "clear" C-m
+#tmux attach -t work
+sleep 2
+tmux new-session -d -s new
+tmux send-keys -t new "cd $PWD" C-m
+tmux send-keys -t new "clear" C-m
+tmux attach -t new
