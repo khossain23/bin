@@ -1,0 +1,5 @@
+#!/bin/bash
+
+url="$(pass durham-library | awk '/url/ {print }')"
+#echo $url
+chrome "${url}"
