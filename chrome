@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Open Google Chrome web browser.
-cd "/mnt/c/Program Files (x86)/Google/Chrome/Application/"
-./chrome.exe $1
+#cd "/mnt/c/Program Files (x86)/Google/Chrome/Application/"
+#./chrome.exe $1
+
+"/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe" $1
 

@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+
+# Search for a Latex package on CTAN and get its url for downloading.
+# Usage:
+
+import argparse
+import requests
+#import urllib.requests
+import time
+from bs4 import BeautifulSoup as bs
+
+# Parse the users input.
+ap = argparse.ArgumentParser(description="get download url for CTAN package")
+ap.add_argument("package", type = str, help = "a CTAN package to search for")
+args = vars(ap.parse_args())
+
+# Search for the package on CTAN.
+package = args["package"]
+site = "https://ctan.org/pkg/"
+search = site + package
+response = requests.get(search)
+
+if response.status_code is not 200:
+    error = response.status_code
+    print("Error {0}: A page for {1} was not found.".format(error, package))
+    exit()
+
+# Parse the webpage.
+soup = bs(response.text, "html.parser")
+
+# Extract the url.
+element = soup.find('p', attrs={'class' : 'download'}) 
+text = str(element).split()[3]
+start = text.find("http")
+stop = text.find('">')
+url = text[start:stop]
+print(url)

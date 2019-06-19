@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Open a file in the WSL with a Window's application.
+
+# Path to WSL files:
+lxss="/mnt/c/Users/tyler/AppData/Local/Packages/CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc/LocalState/rootfs"
+
+# Full path to input file {$1}:
+file_path="$lxss$PWD/$1"
+
+# Open with windows start.
+/mnt/c/Windows/System32/cmd.exe start "" /max "$file_path"
