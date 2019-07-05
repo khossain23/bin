@@ -7,6 +7,7 @@ lxss="/mnt/c/Users/tyler/AppData/Local/Packages/CanonicalGroupLimited.UbuntuonWi
 
 # Full path to input file {$1}:
 file_path="$lxss$PWD/$1"
+#echo "$file_path"
 
 # Open with windows start.
 /mnt/c/Windows/System32/cmd.exe start "" /max "$file_path"
