@@ -1,0 +1,20 @@
+#!/bin/bash
+
+## Installing the pass manager
+# GPG key gen: https://www.tricksofthetrades.net/2015/07/04/notes-pass-unix-password-manager/
+# Setup: https://www.passwordstore.org/
+read -p "Install pass? " -n 1 -r; echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+	sudo apt-get -y install gpg
+fi
+
+read -p "Generate a new GPG key for the pass store? Yes/No: " -n 1 -r; echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+	gpg --gen-key
+fi
+
+GPGKEY="$(gpg -K | awk 'NR==3 {print $2}' | sed 's/2048R\///g')"
+
+pass init $GPGKEY

@@ -1,0 +1,9 @@
+#!/usr/bin/Rscript
+
+## Installing BioConductor.
+# For more info see: https://www.bioconductor.org/install/
+
+# Installation:
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install()
