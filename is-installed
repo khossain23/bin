@@ -1,0 +1,17 @@
+#!/bin/bash
+
+## Check if a package is already installed.
+
+# Use dpkg -s $package to check if a package is installed.
+# Redirect (don't print to terminal) the output of dpgk.
+dpkg -s $1 &> /dev/null
+
+# Check the exit status of the previous command. 
+if [ $? -eq 0 ]; then
+	# If 
+    echo "Package $1 is installed!"
+else
+    echo "Package $1 is NOT installed!"
+fi
+
+# Add ability to install package if it is not installed!

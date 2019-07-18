@@ -1,0 +1,40 @@
+#!/bin/bash
+
+## Installing R package from source into a personal library.
+
+# User should specify a url for the source code. 
+url=$1
+if [ -z "$url" ]
+then
+	echo "Please provide the package's source code url. For example:"
+	echo "https://cran.r-project.org/src/contrib/Matrix_1.2-17.tar.gz"
+	exit
+fi
+
+# Download the packages source code.
+dir=$(echo ~/) 
+sudo wget -P $dir $url
+
+# Create Rlibs directory if it does not exist. 
+libdir=$(echo ~/)Rlibs 
+if [ ! -d $libdir ]
+then
+	mkdir ~/Rlibs && echo "Created directory for storing R packages!"
+fi
+
+# Create .Renviron file if it does not exist.
+if [ ! -f ~/.Renviron ]
+then
+	touch ~/.Renviron && echo "R_LIBS=$libdir" > ~/.Renviron
+	echo "Created .Renviron file!"
+fi
+
+# Install to personal library.
+package=$(basename $url)
+sudo R CMD INSTALL --library=$libdir $package
+
+echo "If installation fails due to permission error when moving package, you can try the following:"
+echo "trace(utils:::unpackPkgZip, edit=TRUE)"
+
+# Alternative: install.packages(path_to_file, repos = NULL, type="source")
+

@@ -3,6 +3,9 @@
 ## Installing R for Ubuntu 18 on WSL.
 # From: https://www.digitalocean.com/community/tutorials/how-to-install-r-on-ubuntu-18-04
 
+# Other help: https://ecosang.github.io/blog/miscellaneous/wsl/
+# Other help: https://github.com/anilchalisey/parseR/wiki/Setting-up-WSL-Bash-on-Windows-10
+
 # Add the gpg key.
 gpg_key="E298A3A825C0D65DFD57CBB651716619E084DAB9"
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $gpg_key
@@ -25,6 +28,7 @@ sudo apt-get install -y zlib1g-dev libssh2-1-dev libpq-dev libxml2-dev
 sudo apt-get install -y libhdf5
 
 # In r as root:
+# This won't work... there may be some unmet dependencies...
 #install.packages("devtools", repos = "https://cran.rstudio.com/")
 
 # Remind the user to install R packages as root user.

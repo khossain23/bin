@@ -2,14 +2,4 @@
 
 # Simpler timer:
 #while true; do echo -ne "`date`\r"; done
-
-function stopwatch(){
-	date1=`date +%s`;
-	while true; do
-		echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r";
-		sleep 0.1
-	done
-}
-
-source stopwatch
-stopwatch 
+while true; do echo -ne "`date | awk '{print $4}' | awk -F':' '{print $3}'`\r"; done

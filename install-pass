@@ -12,9 +12,18 @@ fi
 read -p "Generate a new GPG key for the pass store? Yes/No: " -n 1 -r; echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-	gpg --gen-key
+	gpg --full-generate-key
 fi
 
+# Get your gpg key. Will this work if there are more than one?
 GPGKEY="$(gpg -K | awk 'NR==3 {print $2}' | sed 's/2048R\///g')"
 
 pass init $GPGKEY
+
+# To create a git repository.
+echo "See source code for notes on creating a git repo"
+#pass git init
+#cd ~/.pass-word-store
+# You must create a repo on github.com.
+#git remote add origin "https://github.com/twesleyb/pass-store.git"
+#git push --set-upstream origin master

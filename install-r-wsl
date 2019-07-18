@@ -1,0 +1,61 @@
+# Installing R on WSL
+
+sudo apt-get install gcc make build-essential gfortran
+
+# Download anaconda3.
+url="https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh"
+wget $url
+
+# Installation.
+bash Anaconda3-2019.03-Linux-x86_64.sh
+
+# If you answer 'no' to prompt.
+#source ~/anaconda3/bin/activate
+
+# Reload bash config.
+source 	~/.bashrc
+
+# Auto activate base = FALSE
+conda config --set auto_activate_base False
+
+# Update
+conda update conda
+conda update anaconda
+conda update conda-build
+
+# Add bioconda channels and some other dependencies. 
+conda config --add channels bioconda
+conda install -c bioconda samtools bedtools fastqc sambamba MACS2 subread
+
+# Install R. 
+
+sudo echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | sudo tee -a /etc/apt/sources.list
+
+gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
+gpg -a --export E084DAB9 | sudo apt-key add -
+
+sudo apt-get update
+sudo apt-get install r-base r-base-dev
+
+# Install RStudio.
+sudo apt-get update
+sudo apt-get install gdebi-core gfortran libgdal-dev libgeos-dev libpng-dev
+sudo apt-get install libjpeg62-dev libjpeg8-dev libcairo-dev libssl-dev
+wget https://download1.rstudio.org/rstudio-1.0.143-amd64.deb
+sudo gdebi -n rstudio-1.0.143-amd64.deb
+rm rstudio-1.0.143-amd64.deb
+
+# Install key R packages.
+sudo apt-get update
+sudo apt-get install build-essential libx11-dev
+sudo apt-get install libcurl4-openssl-dev libxml2 libxml2-dev libncurses5-dev zlib1g-dev curl
+
+
+# Install some R packages.
+install.packages(c("tidyverse", "devtools", "rmarkdown", "knitr", "data.table",
+                 "ggthemes"))
+source("http://bioconductor.org/biocLite.R")
+biocLite("BiocUpgrade")
+biocLite(c("rtracklayer", "limma", "DESeq2", "edgeR", "ComplexHeatmap", "goseq", 
+         "Rsamtools"))
+# once complete, close the R terminal

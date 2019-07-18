@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Launch RStudio from WSL bash.
+"/mnt/c/Program Files/RStudio/bin/rstudio.exe"
