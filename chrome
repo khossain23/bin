@@ -4,5 +4,7 @@
 #cd "/mnt/c/Program Files (x86)/Google/Chrome/Application/"
 #./chrome.exe $1
 
-"/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe" $1
+"/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe" "$1"
 
+# To search google, use the following format:
+# chrome "? <your search term>"

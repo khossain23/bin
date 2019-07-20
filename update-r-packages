@@ -1,0 +1,4 @@
+#!/usr/bin/env Rscript
+
+# Update R packages.
+update.packages(checkBuilt = TRUE, ask = FALSE)
