@@ -1,0 +1,18 @@
+#!/bin/bash
+# Usage:
+# $ config-r [<path/to/local/R/library/>]
+
+# Where should local R packages be installed?
+
+# If no directory is passed as input to the function, then default to ~/R_lib
+if [$# -eq 0 ]
+then
+	lib_path="~/R_lib"
+	echo "R packages will be installed in $lib_path"
+	[ ! -d "$lib_path" ] && mkdir "$lib_path"
+fi
+
+# Update .Renviron configuration file.
+[ ! -f "~/.Renviron" ] && touch ~/.Renviron
+echo "export R_LIBS="$lib_path"" > ~/.Renviron
+
