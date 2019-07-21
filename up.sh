@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## Up - update your linux system.
+## Update - update your linux system.
 
 # Exit Bash on error.
 set -e

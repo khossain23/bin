@@ -1,0 +1,28 @@
+#!/bin/bash
+
+## Installing R package from source into a personal library.
+
+# Get user's .libPaths() by sending command to R and gettting its stdout.
+touch ~/temp.R | sudo chmod +x ~/temp.R
+echo ".libPaths()" > temp.R
+lib_paths="$(Rscript ~/temp.R)"
+rm ~/temp.R
+usr_lib="$(echo "$lib_paths" | cut -d" " -f2 | head -n 1)"
+
+# User should specify a url for the source code. 
+url=$1
+if [ -z "$url" ]
+then
+	echo "Please provide the package's source code url. For example:"
+	echo "https://cran.r-project.org/src/contrib/Matrix_1.2-17.tar.gz"
+	exit
+fi
+
+# Download the packages source code to the home directory.
+dir=$(echo ~/) 
+sudo wget -P $dir $url
+
+# Install to user's personal library.
+package=$(basename $url)
+R CMD INSTALL --library=$usr_lib $package
+
