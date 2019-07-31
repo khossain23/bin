@@ -3,9 +3,11 @@
 # Updating R.
 # From: https://github.com/duckmayr/install-update-r-on-linux
 
+# Add the authorization key.
 key="E298A3A825C0D65DFD57CBB651716619E084DAB9"
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $key
 
+# Download the most recent verion of R.
 cran_mirror="http://cran.wustl.edu/bin/linux/ubuntu bionic-cran35/"
 sudo echo "deb $cran_mirror" | sudo tee -a /etc/apt/sources.list
 sudo apt update
@@ -14,6 +16,6 @@ sudo apt update
 sudo apt upgrade
 
 # Insure that R packages are up-to-date.
-~/bin/update-r-packages
+#~/bin/update-r-packages
 
 

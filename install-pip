@@ -1,8 +1,5 @@
-#!/usr/bin/env python3
+#!/bin/bash
 
-# Install some basic python dependencies.
-
-sudo apt-get install 
-pip install numpy
-pip install requests
-pip install bs4
+# Installing pip3
+sudo apt update
+sudo apt install python3-pip

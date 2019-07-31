@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Open a file with Windows.
+# Common extensions: 
+# .txt
+# .md
+# .docx
+# .xlsx
+# .csv
+
+# Windows programs:
+notepad="/mnt/c/WINDOWS/system32/notepad.exe" 
+word="/mnt/c/Program Files/Microsoft Office/root/Office16/WINWORD.EXE" 
+excel="/mnt/c/Program Files/Microsoft Office/root/Office16/EXCEL.EXE"
+
+# Get the input file's extension.
+filename=$(basename -- "$1")
+extension="${filename##*.}"
+
+# Open with appropriate program:
+if [ $extension == "txt" ] 
+then
+	"$notepad" "$1"
+elif [ $extension == "docx" ] | [ $extension == "doc" ]
+then
+	"$word" "$1"
+elif [ $extension == "xlsx" ] | [ $extension == "xls" ] | [ $extension == "csv" ]
+then
+	"$excel" "$1"
+else
+	echo "$extension files are not currently supported!"
+fi

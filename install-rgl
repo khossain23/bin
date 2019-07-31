@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# From: https://stackoverflow.com/questions/31820865/error-in-installing-rgl-package
+
+sudo apt-get install xorg 
+sudo apt-get install libx11-dev 
+sudo apt-get install libglu1-mesa-dev 
+
+sudo apt-get install libfreetype6-dev
+wget https://cran.r-project.org/src/contrib/rgl_0.100.26.tar.gz
+
+R CMD INSTALL rgl_0.100.26.tar.gz 
+
+# Still not working...
+# Try: https://stackoverflow.com/questions/29478686/troubles-installing-rgl-on-ubuntu
+
+# Will this fix x11 display problem?
+sudo apt-get install libcgal-dev libglu1-mesa-dev libglu1-mesa-dev
+sudo apt-get install libx11-dev

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Easy git configuration.
+user_name="$(read -p "git global user.name: ")"
+user_email="$(read -p "git global user.email: ")"
+git config --global user.name $user_name
+git config --global user.email $user_email

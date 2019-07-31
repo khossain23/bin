@@ -28,7 +28,6 @@ sudo apt-get install -y libcurl4-openssl-dev libssl-dev
 sudo apt-get install -y zlib1g-dev libssh2-1-dev libpq-dev libxml2-dev 
 #sudo apt-get install -y libhdf5 # package not found.
 
-sudo -i R
-install.packages("devtools", repos = "https://cran.rstudio.com/")
+# Update R?
 
 

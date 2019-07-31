@@ -10,7 +10,7 @@ if [ $# -eq 0 ]
 then
 	lib_path="$(echo ~/local)/R_libs"
 	echo "R packages will be installed in $lib_path"
-	[ ! -d "$lib_path" ] && mkdir "$lib_path"
+	[ ! -d "$lib_path" ] && mkdir -p "$lib_path"
 fi
 
 # Create .Renviron file if it does not exist.
@@ -26,4 +26,16 @@ then
 	touch ~/.Rprofile
 	echo "Created .Rprofile!"
 fi
+
+# Insure that user is added to libPaths!
+user=$(whoami)
+sudo chgrp $user /usr/lib/R/site-library/
+sudo chgrp $user /usr/local/lib/R/site-library/
+sudo chgrp $user /usr/lib/R/library/
+
+# Make sure that user has write access.
+sudo chmod g+w /usr/lib/R/site-library/
+sudo chmod g+w /usr/local/lib/R/site-library/
+sudo chmod g+w /usr/lib/R/library/
+
 
