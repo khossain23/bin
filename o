@@ -12,6 +12,7 @@
 notepad="/mnt/c/WINDOWS/system32/notepad.exe" 
 word="/mnt/c/Program Files/Microsoft Office/root/Office16/WINWORD.EXE" 
 excel="/mnt/c/Program Files/Microsoft Office/root/Office16/EXCEL.EXE"
+adobe="/mnt/c/Program Files (x86)/Adobe/Acrobat Reader DC/Reader/AcroRd32.exe"
 
 # Get the input file's extension.
 filename=$(basename -- "$1")
@@ -24,9 +25,18 @@ then
 elif [ $extension == "docx" ] | [ $extension == "doc" ]
 then
 	"$word" "$1"
-elif [ $extension == "xlsx" ] | [ $extension == "xls" ] | [ $extension == "csv" ]
+elif [ $extension == "xlsx" ] 
 then
 	"$excel" "$1"
+elif [ $extension == "xls" ] 
+then
+	"$excel" "$1"
+elif [ $extension == "csv" ]
+then
+	"$excel" "$1"
+elif [ $extension == "pdf" ]
+then
+	"$adobe" "$1"
 else
 	echo "$extension files are not currently supported!"
 fi
