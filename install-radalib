@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Install radalib
+# From: https://github.com/sergio-gomez/Radalib/blob/master/radalib-howto-linux.txt
+# Should have previously installed ada. See install-ada
+
+# Create ada directory.
+mkdir -p ~/ada
+
+# Download
+wget -P ~/ada http://deim.urv.cat/~sergio.gomez/radalib/radalib.zip
+wget -P ~/ada http://deim.urv.cat/~sergio.gomez/radalib/radalib-install-linux.sh
+
+# Install.
+chmod 755 ~/ada/radalib-install-linux.sh
+~/ada/radalib-install-linux.sh

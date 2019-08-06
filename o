@@ -1,42 +1,55 @@
 #!/bin/bash
 
-# Open a file with Windows.
+# Open a file with Windows applications.
 # Common extensions: 
-# .txt
-# .md
-# .docx
-# .xlsx
-# .csv
+# * .txt
+# * .md
+# * .docx
+# * .xlsx
+# * .csv
 
+#------------------------------------------------------------------------------
 # Windows programs:
-notepad="/mnt/c/WINDOWS/system32/notepad.exe" 
-word="/mnt/c/Program Files/Microsoft Office/root/Office16/WINWORD.EXE" 
-excel="/mnt/c/Program Files/Microsoft Office/root/Office16/EXCEL.EXE"
-adobe="/mnt/c/Program Files (x86)/Adobe/Acrobat Reader DC/Reader/AcroRd32.exe"
+notepad () { "/mnt/c/WINDOWS/system32/notepad.exe" "$1"; }
+excel () { "/mnt/c/Program Files/Microsoft Office/root/Office16/EXCEL.EXE" "$1"; }
+word () { "/mnt/c/Program Files/Microsoft Office/root/Office16/WINWORD.EXE" "$1"; } 
+adobe () { "/mnt/c/Program Files (x86)/Adobe/Acrobat Reader DC/Reader/AcroRd32.exe" "$1"; }
 
 # Get the input file's extension.
-filename=$(basename -- "$1")
+file=$1
+filename=$(basename -- "$file")
 extension="${filename##*.}"
+
+# If provided, open file with application.
+if [ ! -z "$2" ]
+then
+	application="$2"
+	echo "Opening "$filename" with "$application"!"
+	$application $file
+fi
 
 # Open with appropriate program:
 if [ $extension == "txt" ] 
 then
-	"$notepad" "$1"
-elif [ $extension == "docx" ] | [ $extension == "doc" ]
+	notepad "$1"
+elif [ $extension == "docx" ]
 then
-	"$word" "$1"
-elif [ $extension == "xlsx" ] 
+	word "$1"
+elif [ $extension == "doc" ] 
 then
-	"$excel" "$1"
+	word "$1"
+elif [ $extension == "xlsx" ]
+then
+	excel "$1"
 elif [ $extension == "xls" ] 
 then
-	"$excel" "$1"
+	excel "$1"
 elif [ $extension == "csv" ]
 then
-	"$excel" "$1"
+	excel "$1"
 elif [ $extension == "pdf" ]
 then
-	"$adobe" "$1"
+	adobe "$1"
 else
 	echo "$extension files are not currently supported!"
 fi

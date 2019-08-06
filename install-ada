@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Install gnat.
+sudo apt-get update
+sudo apt-get install gnat
+sudo apt-get install gnat-gps
+
+# Update bashrc
+# Insure you have updated your bashrc!
+echo "export PATH=/usr/bin/gnat:$PATH" >> ~/.bashrc
+echo "export RADALIB_ROOT=/home/twesleyb/ada/radalib" >> ~/.bashrc 
+echo "export ADA_INCLUDE_PATH=$RADALIB_ROOT/source" >> ~/.bashrc
+echo "export ADA_OBJECTS_PATH=$RADALIB_ROOT/compiled" >> ~/.bashrc
+source ~/.bashrc
