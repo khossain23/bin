@@ -1,0 +1,13 @@
+#!/bin/bash
+
+## Installation of infomap on WSL.
+#  From: https://www.mapequation.org/code.html
+#  Can also be downloaded from:
+#wget
+
+sudo apt-get install build-essential
+
+git clone https://github.com/mapequation/infomap.git ~/projects/infomap
+
+cd ~/projects/infomap
+make

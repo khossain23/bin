@@ -2,18 +2,28 @@
 
 # Open a file with Windows applications.
 # Common extensions: 
-# * .txt
-# * .md
-# * .docx
-# * .xlsx
-# * .csv
+# *.txt
+# *.md
+# *.docx
+# *.xlsx
+# *.csv
+# *.ppt
+
+# Need to add:
+# *.eps
+# *.tiff
+# *.png
 
 #------------------------------------------------------------------------------
-# Windows programs:
+# Bash functions to open files with specific Windows applications:
 notepad () { "/mnt/c/WINDOWS/system32/notepad.exe" "$1"; }
 excel () { "/mnt/c/Program Files/Microsoft Office/root/Office16/EXCEL.EXE" "$1"; }
 word () { "/mnt/c/Program Files/Microsoft Office/root/Office16/WINWORD.EXE" "$1"; } 
 adobe () { "/mnt/c/Program Files (x86)/Adobe/Acrobat Reader DC/Reader/AcroRd32.exe" "$1"; }
+powerpoint () { "/mnt/c/Program Files/Microsoft Office/root/Office16/POWERPNT.EXE" "$1"; }
+
+paint () { "/mnt/c/WINDOWS/system32/mspaint.exe" "$1"; }
+illustrator () { "/mnt/c/Program Files/Adobe/Adobe Illustrator CC 2019/Support Files/Contents/Windows/illustrator.exe" "$1"; }
 
 # Get the input file's extension.
 file=$1
@@ -50,6 +60,9 @@ then
 elif [ $extension == "pdf" ]
 then
 	adobe "$1"
+elif [ $extension == "pdf" ]
+then
+	powerpoint "$1"
 else
 	echo "$extension files are not currently supported!"
 fi
