@@ -30,6 +30,15 @@ fi
 # Check the install:
 npm --version
 
+# Install terminalizer dependency, node-gyp.
+dpkg -s node-gyp &> /dev/null
+if [ $? -eq 0 ]; then
+    echo "node-gyp is already installed!"
+else
+    echo "Installing node-gyp!"
+    sudo npm install -g node-gyp
+fi
+
 # Install terminalizer if it is already not installed.
 dpkg -s terminalizer &> /dev/null
 if [ $? -eq 0 ]; then
