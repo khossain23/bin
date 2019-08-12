@@ -4,7 +4,7 @@
 #  From: https://github.com/faressoft/terminalizer
 
 # Update
-sudo apt-get update
+sudo apt-get -y update
 
 # Install Node.js if it is not already installed.
 dpkg -s nodejs &> /dev/null
@@ -36,6 +36,6 @@ if [ $? -eq 0 ]; then
     echo "terminalizer is already installed!"
 else
     echo "Installing terminalizer!"
-    npm install -g terminalizer
+    sudo npm install -g terminalizer
 fi
 
