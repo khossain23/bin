@@ -20,12 +20,11 @@ lib_paths="$(Rscript ~/temp.R)"
 rm ~/temp.R
 
 # Get the user's library.
-echo "Please specify a directory for installation: " 
+echo "Please specify a directory for installation: "
 echo "$lib_paths"
-echo "$lib_paths" | awk '{print length}'
-read -p "" -n 1 -r
+read -p "[1..]: " -n 1 -r
 
-user_lib="$(echo "$lib_paths" | cut -d" " -f2 | head -n $REPLY)"
+user_lib="$(echo "$lib_paths" | cut -d" " -f$REPLY | head -n 1)"
 
 # Status report.
 echo "Package will be installed in: "
