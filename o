@@ -11,8 +11,6 @@
 
 # Need to add:
 # *.eps
-# *.tiff
-# *.png
 
 #------------------------------------------------------------------------------
 # Bash functions to open files with specific Windows applications:
@@ -21,7 +19,6 @@ excel () { "/mnt/c/Program Files/Microsoft Office/root/Office16/EXCEL.EXE" "$1";
 word () { "/mnt/c/Program Files/Microsoft Office/root/Office16/WINWORD.EXE" "$1"; } 
 adobe () { "/mnt/c/Program Files (x86)/Adobe/Acrobat Reader DC/Reader/AcroRd32.exe" "$1"; }
 powerpoint () { "/mnt/c/Program Files/Microsoft Office/root/Office16/POWERPNT.EXE" "$1"; }
-
 paint () { "/mnt/c/WINDOWS/system32/mspaint.exe" "$1"; }
 illustrator () { "/mnt/c/Program Files/Adobe/Adobe Illustrator CC 2019/Support Files/Contents/Windows/illustrator.exe" "$1"; }
 
@@ -60,9 +57,21 @@ then
 elif [ $extension == "pdf" ]
 then
 	adobe "$1"
-elif [ $extension == "pdf" ]
+elif [ $extension == "png" ]
+then
+	paint "$1"
+elif [ $extension == "tiff" ]
+then
+	paint "$1"
+elif [ $extension == "pptx" ]
 then
 	powerpoint "$1"
+elif [ $extension == "ppt" ]
+then
+	powerpoint "$1"
+elif [ $extension == "eps" ]
+then
+	illustrator "$1"
 else
 	echo "$extension files are not currently supported!"
 fi

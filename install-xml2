@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Trouble shooting installation of R xml2.
+
+# Install system dependencies first.
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install libxml2-dev
+
+# Install package from source with --no-lock option.
+usr_lib="home/twesleyb/local/R_libs"
+url="https://cran.r-project.org/src/contrib/xml2_1.2.2.tar.gz"
+R CMD INSTALL --no-lock --library=$usr_lib $url

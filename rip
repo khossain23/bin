@@ -1,14 +1,13 @@
 #!/bin/bash
 
-## Installing R package from source into a personal library.
-
-# Methods:
-# Install from source code given a url.
+## Installing R package from source url into a personal library.
 
 # Could add:
 # Install within R using utils.
 # Install within R using bioconductor.
 # Install within R using devtools.
+# No lock option for R CMD INSTALL... and instal.packages()
+#     install.packages("Rcpp", dependencies=TRUE, INSTALL_opts = c('--no-lock'))
 
 # Create a temporary script to get the user's R library paths.
 touch ~/temp.R | sudo chmod +x ~/temp.R | echo ".libPaths()" > ~/temp.R
@@ -20,17 +19,16 @@ lib_paths="$(Rscript ~/temp.R)"
 rm ~/temp.R
 
 # Get the user's library.
-echo "Please specify a directory for installation: "
-echo "$lib_paths"
-read -p "[1..]: " -n 1 -r
-
-user_lib="$(echo "$lib_paths" | cut -d" " -f$REPLY | head -n 1)"
+#echo "Please specify a directory for installation: "
+#echo "$lib_paths"
+# FIXME: need to correctly parse user's response!
+#read -p "[1..]: " -n 1 -r
+#user_lib="$(echo "$lib_paths" | cut -d" " -f$REPLY | head -n 1)"
+user_lib="home/twesleyb/local/R_libs"
 
 # Status report.
 echo "Package will be installed in: "
 echo "$user_lib"
-
-exit
 
 # User should specify a url for the source code. 
 url=$1
@@ -46,6 +44,8 @@ dir=$(echo ~/)
 sudo wget -P $dir $url
 
 # Install to user's personal library.
+# Can specify the no lock option. R CMD INSTALL --no-lock
 package=$(basename $url)
+#R CMD INSTALL --no-lock --library=$usr_lib $package
 R CMD INSTALL --library=$usr_lib $package
 

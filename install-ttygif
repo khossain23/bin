@@ -9,3 +9,4 @@ git clone https://github.com/icholy/ttygif.git
 cd ttygif
 make
 sudo make install
+
