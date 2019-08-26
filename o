@@ -72,6 +72,9 @@ then
 elif [ $extension == "eps" ]
 then
 	illustrator "$1"
+elif [ $extension == "md" ]
+then
+	open-md "$1"
 else
 	echo "$extension files are not currently supported!"
 fi

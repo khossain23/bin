@@ -22,13 +22,13 @@ if [ $extension == "c" ]
 then
 	gcc $1 -o $output.exe
 	./$output.exe
-	#rm ./$output.exe
+	rm ./$output.exe
 # If *.cpp then compile with g++.
 elif [ $extension == "cpp" ]
 then
-	g++ $1 -o $out.exe
+	g++ $1 -o $output.exe
 	./$output.exe
-	#rm ./$output.exe
+	rm ./$output.exe
 else
 	echo "$extension files are not recognized!"
 	exit
