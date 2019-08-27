@@ -1,14 +1,22 @@
 #!/bin/bash
 
+## Configuring the home directory on WSL.
+# USAGE:
+# $ ~/bin/config-home
+
 # System update.
 sudo apt-get -y update
 
-# Pull dotfiles.
+# Pull dotfiles and configure.
 git clone https://github.com/twesleyb/dotfiles.git
-
-# Configure bash.
 ~/dotfiles/config
+
+# Configure Vim: get Vundle and install plugins.
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim +PluginInstall +qall
 
 # Link key Windows directories.
 ln -s "/mnt/c/Users/Tyler Bradshaw/Downloads/" ~/downloads
 ln -s "/mnt/d/projects/" ~/projects
+
+
