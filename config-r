@@ -37,5 +37,3 @@ sudo chgrp $user /usr/lib/R/library/
 sudo chmod g+w /usr/lib/R/site-library/
 sudo chmod g+w /usr/local/lib/R/site-library/
 sudo chmod g+w /usr/lib/R/library/
-
-

@@ -15,8 +15,10 @@ git clone https://github.com/twesleyb/dotfiles.git
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 
+# Configure Tmux: get TPM and install plugins.
+install-tpm
+
 # Link key Windows directories.
 ln -s "/mnt/c/Users/Tyler Bradshaw/Downloads/" ~/downloads
 ln -s "/mnt/d/projects/" ~/projects
-
 

@@ -26,6 +26,6 @@ exit
 #  From https://www.r-bloggers.com/updating-r-on-ubuntu/
 # Add R source for your appropriate ubuntu distro:
 # Too see which ubuntu version you have:
-lsb_release -a # bionic
-echo "deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/" >> /etc/apt/sources.list
+#lsb_release -a # bionic
+#echo "deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/" >> /etc/apt/sources.list
 
