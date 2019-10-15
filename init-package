@@ -1,0 +1,8 @@
+#!/usr/bin/R script
+
+here <- getwd()
+print(here)
+package <- readline(prompt="Package name: ")
+print(package)
+quit()
+devtools::create(package)
