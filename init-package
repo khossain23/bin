@@ -1,8 +1,8 @@
-#!/usr/bin/R script
+#!/usr/bin/env Rscript
 
-here <- getwd()
-print(here)
-package <- readline(prompt="Package name: ")
-print(package)
-quit()
+# Query user for name of package.
+cat('New package name: ')
+package <- scan("stdin", character(), n = 1)
+
+# Create package.
 devtools::create(package)

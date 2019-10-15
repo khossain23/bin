@@ -1,4 +1,5 @@
 #!/usr/bin/env Rscript
 # Update a directory containing an R package.
 
+# You should be in the package directory.
 devtools::document()
