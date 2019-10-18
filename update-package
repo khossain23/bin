@@ -1,5 +1,16 @@
-#!/usr/bin/env Rscript
+#!/usr/bin/bash
 # Update a directory containing an R package.
 
-# You should be in the package directory.
-devtools::document()
+echo "Updating package documentation..."
+document
+
+echo "Pushing changes to git..."
+easypush
+
+echo "Re-installing package..."
+rpackage="$(basename $(git rev-parse --show-toplevel))"
+gituser=$(git config --list | awk 'NR == 2 { print }' | cut -d '=' -f 2)
+install_github $gituser $rpackage
+
+
+
