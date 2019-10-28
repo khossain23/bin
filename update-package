@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 # Update a directory containing an R package.
 
 echo "Updating package documentation..."

@@ -1,0 +1,87 @@
+#!/bin/bash
+# Installation of Docker on WSL.
+# From: https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly
+
+# Update.
+sudo apt-get update -y
+
+# Install Docker dependencies.
+echo "Installing Docker dependencies..."
+sudo apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+
+# Download and add Docker PGP key.
+echo "Downloading Docker's PGP key..."
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+# Verify the fingerprint.
+sudo apt-key fingerprint 0EBFCD88
+
+# Add stable Docker repository.
+sudo add-apt-repository \
+    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+    $(lsb_release -cs) \
+    stable"
+
+# Update the apt package list (for the new apt repo).
+sudo apt-get update -y
+
+# Install the latest version of Docker CE.
+sudo apt-get install -y docker-ce
+
+# Allow your user to access the Docker CLI without needing root access.
+sudo usermod -aG docker $USER
+
+# Reload configuration.
+source ~/.bashrc
+
+# Install Python and PIP.
+#sudo apt-get install -y python python-pip
+
+# Install Docker Compose into your user's home directory.
+pip install --user docker-compose
+
+# Insure that $HOME/.local/bin is in your path!
+echo "Insure that /home/user/.local/bin is in your path!"
+
+
+#--------------------------
+# Instructions from: 
+# https://medium.com/faun/docker-running-seamlessly-in-windows-subsystem-linux-6ef8412377aa
+
+# Installation of Docker for WSL
+sudo apt-get remove docker docker-engine docker.io containerd runc
+
+# Update the source listing
+sudo apt-get update
+
+# Ensure that you have the binaries needed to fetch repo listing
+sudo apt-get install apt-transport-https ca-certificates curl gnupg2 software-properties-common
+
+# Fetch the repository listing from docker's site & add it
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+# Update source listing now that we've added Docker's repo
+sudo apt-get update
+
+# Check which version of docker we need.
+apt list -a docker-ce
+
+# Install the specific version of docker that we need.
+sudo apt-get install docker-ce=18.06.3~ce~3-0~ubuntu 
+
+# Add current user to 'docker' group so that we can interface with Docker Engine as root.
+sudo usermod -aG docker $USER
+
+# Use the start_docker script to launch docker. 
+echo "Use /usr/local/sbin/start_docker to launch docker!"
+echo "It should contain the following:"
+echo ""
+echo "#!/usr/bin/env bash"
+echo "sudo cgroupfs-mount"
+echo "sudo service docker start"
+
