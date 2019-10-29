@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# If you already have python, you can install ipython with pip.
-pip install ipython

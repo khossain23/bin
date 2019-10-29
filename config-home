@@ -19,9 +19,9 @@ vim +PluginInstall +qall
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Link key Windows directories.
-ln -s "/mnt/c/Users/Tyler Bradshaw/Downloads/" ~/downloads
-ln -s "/mnt/d/projects/" ~/projects
-ln -s "/mnt/d/projects/bin" ~/bin
+ln -s "/mnt/c/Users/khoss/Downloads/" ~/downloads
+ln -s "/mnt/c/Users/khoss/Documents/Projects(LAB)/" ~/projects
+ln -s "/mnt/c/Users/khoss/Documents/Projects(LAB)/bin/" ~/bin
 
 # Reload bashrc.
 source ~/.bashrc

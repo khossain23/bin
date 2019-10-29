@@ -1,4 +1,0 @@
-#!/usr/bin/env Rscript
-
-# Check if rtools is installed.
-if (pkgbuild::find_rtools()) print("Rtools is detected!")

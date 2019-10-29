@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# Upgrade linux apps.
-sudo apt-get upgrade

@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# Update linux apps.
-sudo apt-get update

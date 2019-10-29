@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# Get number of columns in a file.
-awk '{print NF}' $1 | sort -nu | tail -n 1

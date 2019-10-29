@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# Get number of rows in a file.
-cat $1 | wc -l

@@ -1,8 +1,0 @@
-#!/usr/bin/env Rscript
-
-# Query user for name of package.
-cat('New package name: ')
-package <- scan("stdin", character(), n = 1)
-
-# Create package.
-devtools::create(package)

@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# Activate directories virtual environment!
-# Does not work for some reason!
-#source $PWD/pyenv/bin/activate
